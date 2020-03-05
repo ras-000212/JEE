@@ -1,3 +1,4 @@
+package médiathèque;
 
 public class User {
 	private String login;
