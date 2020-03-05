@@ -1,3 +1,4 @@
+package médiathèque;
 
 public class User {
 	private String login;
@@ -15,7 +16,5 @@ public class User {
 		return this.login;
 	}
 	
-	
-
 
 }
