@@ -16,7 +16,5 @@ public class User {
 		return this.login;
 	}
 	
-	
-
 
 }
