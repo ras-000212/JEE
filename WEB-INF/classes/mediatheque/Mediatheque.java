@@ -13,7 +13,7 @@ public class Mediatheque {
 	 
 	// exemple de méthode qui agit sur le document 
 	public void emprunt(Document d, Utilisateur u) throws EmpruntException {   
-		d.emprunter(u);  
+		d.emprunter((mediatek2020.items.Utilisateur) u);  
 	} 
 	 
 	// exemple de méthode qui délègue à data

@@ -56,8 +56,9 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 	public Utilisateur getUser(String login, String password) {
 		try {
 			this.init();
-			PreparedStatement req1 = connect.prepareStatement("Select login from Utilisateur where login = ?");
+			PreparedStatement req1 = connect.prepareStatement("Select login from Utilisateur where login = ? and Mdp = ?");
 			req1.setString(1,login);
+			req1.setString(1,password);
 			
 			ResultSet res1 = req1.executeQuery();
 			

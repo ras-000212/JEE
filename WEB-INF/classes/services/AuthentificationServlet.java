@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import persistantdata.MediathequeData;
+
 
 public class AuthentificationServlet extends HttpServlet {
 
@@ -25,12 +27,20 @@ public class AuthentificationServlet extends HttpServlet {
 		out.println("<title> Authentification </title>");
 		out.println("</head>");
 		out.println("<body bgcolor=\"white\">");
-		out.println("<form>\r\n" + 
+		out.println("<form method=\"post\">\r\n" + 
 				"  <label>Login:</label><br>\r\n" + 
 				"  <input type=\"text\" name=\"login\"><br>\r\n" +
+				"  <label>Password:</label><br>\r\n" + 
+				"  <input type=\"text\" name=\"pwd\"><br>\r\n" +
+				" <input type=\"submit\" value=\"Connexion\" " +
 				"</form>");
 
 		out.println("</body>");
 		out.println("</html>");
 	}
+	
+	 public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
+		 MediathequeData.getUser(request.getParameter("login"),request.getParameter("pwd"));
+	 }
+	
 }

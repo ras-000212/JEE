@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="H:/COMMUN/DUTAPP/Applis Web Java/Projet/media.jar"/>
-	<classpathentry kind="lib" path="H:/COMMUN/DUTAPP/Applis Web Java/tp1 jdbc/ojdbc6.jar"/>
-	<classpathentry kind="lib" path="Z:/Semestre 4/Applis Web Java/tp 2/javax.jar"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="lib" path="Z:/apache-tomcat-9.0.14/apache-tomcat-9.0.14/webapps/Projet Web/WEB-INF/classes/media.jar"/>
+	<classpathentry kind="lib" path="H:/COMMUN/DUTAPP/Applis Web Java/tp2 servlets/javax.jar"/>
+	<classpathentry kind="output" path=""/>
 </classpath>
