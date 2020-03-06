@@ -1,6 +1,12 @@
 package services;
 
-import javax.servlet.http.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 public class AuthentificationServlet extends HttpServlet {
@@ -9,19 +15,6 @@ public class AuthentificationServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
-		try {
-			Class.forName("oracle.jdbc.OracleDriver");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		HttpSession session = request.getSession(true);
-
-		String u_name = request.getParameter("u_name");
-		User user = new User(u_name);
-		session.setAttribute("user", user);
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
@@ -32,10 +25,10 @@ public class AuthentificationServlet extends HttpServlet {
 		out.println("<title> Authentification </title>");
 		out.println("</head>");
 		out.println("<body bgcolor=\"white\">");
-
-		out.println("<h1>" + "Bien enregistré " + u_name + "</h1>");
-
-		out.println("<a href='verif'>Vérification</a>");
+		out.println("<form>\r\n" + 
+				"  <label>Login:</label><br>\r\n" + 
+				"  <input type=\"text\" name=\"login\"><br>\r\n" +
+				"</form>");
 
 		out.println("</body>");
 		out.println("</html>");

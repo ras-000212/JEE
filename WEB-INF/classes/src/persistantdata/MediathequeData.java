@@ -2,6 +2,8 @@ package persistantdata;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -52,6 +54,20 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 	// si pas trouvé, renvoie null
 	@Override
 	public Utilisateur getUser(String login, String password) {
+		try {
+			this.init();
+			PreparedStatement req1 = connect.prepareStatement("Select login from Utilisateur where login = ?");
+			req1.setString(1,login);
+			
+			ResultSet res1 = req1.executeQuery();
+			
+			while(res1.next()) {
+				System.out.println(res1.getString(1));
+			}
+			
+		} catch (ServletException | SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
