@@ -1,6 +1,13 @@
 package persistantdata;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 
 import mediatek2020.*;
 import mediatek2020.items.Document;
@@ -9,8 +16,25 @@ import mediatek2020.items.Utilisateur;
 // classe mono-instance  dont l'unique instance est connue de la bibliotheque
 // via une auto-déclaration dans son bloc static
 
-public class MediathequeData implements PersistentMediatheque {
+public class MediathequeData extends HttpServlet implements PersistentMediatheque  {
 // Jean-François Brette 01/01/2018
+	
+ private Connection connect;
+	
+	public void init(ServletConfig config) throws ServletException{
+		try {
+			super.init(config);
+			Class.forName("oracle.jdbc.OracleDriver");
+			connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","ETUDIANT","ETUDIANT");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	static {
 		Mediatheque.getInstance().setData(new MediathequeData());
 	}

@@ -1,4 +1,4 @@
-package médiathèque;
+package mediatheque;
 
 import mediatek2020.items.Document;
 import mediatek2020.items.EmpruntException;

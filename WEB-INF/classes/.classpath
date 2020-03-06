@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="H:/COMMUN/DUTAPP/Applis Web Java/Projet/media.jar"/>
 	<classpathentry kind="lib" path="H:/COMMUN/DUTAPP/Applis Web Java/tp1 jdbc/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="Z:/Semestre 4/Applis Web Java/tp 2/javax.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
