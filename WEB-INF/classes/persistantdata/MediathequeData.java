@@ -30,10 +30,8 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 			Class.forName("oracle.jdbc.OracleDriver");
 			connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","ETUDIANT","ETUDIANT");
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -69,8 +67,6 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 			else {
 				return null;
 			}
-			
-			
 			
 			
 		} catch (ServletException | SQLException e) {

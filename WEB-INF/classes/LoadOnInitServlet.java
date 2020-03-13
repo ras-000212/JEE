@@ -13,6 +13,11 @@ public class LoadOnInitServlet extends HttpServlet {
 	@Override
 	public void init(ServletConfig arg0) throws ServletException {
 		super.init(arg0);
+		try {
+			Class.forName("persistantdata.MediathequeData");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 		System.out.println("******************************************************************");
 		
 	}
