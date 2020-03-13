@@ -2,6 +2,7 @@ package mediatheque;
 
 import mediatek2020.items.Document;
 import mediatek2020.items.EmpruntException;
+import mediatek2020.items.Utilisateur;
 
 public class Mediatheque {
 	
@@ -9,7 +10,7 @@ public class Mediatheque {
 	
 	public void setData(PersistentMediatheque data) {
 		if (this.data == null) this.data = data;  
-		} 
+	} 
 	 
 	// exemple de méthode qui agit sur le document 
 	public void emprunt(Document d, Utilisateur u) throws EmpruntException {   

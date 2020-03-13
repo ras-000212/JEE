@@ -2,6 +2,8 @@ package mediatheque;
 
 import java.util.List;
 
+import mediatek2020.items.Utilisateur;
+
 public interface PersistentMediatheque {
 	// Jean-François Brette 01/01/2018    
 	List<Documents> tousLesDocuments();  

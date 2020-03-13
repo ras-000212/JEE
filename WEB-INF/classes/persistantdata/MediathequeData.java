@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import mediatek2020.*;
 import mediatek2020.items.Document;
 import mediatek2020.items.Utilisateur;
+import mediatheque.Utilisateurs;
 
 // classe mono-instance  dont l'unique instance est connue de la bibliotheque
 // via une auto-déclaration dans son bloc static
@@ -26,6 +27,7 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 	public void init(ServletConfig config) throws ServletException{
 		try {
 			super.init(config);
+			Class.forName("oracle.jdbc.OracleDriver");
 			connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","ETUDIANT","ETUDIANT");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -57,13 +59,19 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 			this.init();
 			PreparedStatement req1 = connect.prepareStatement("Select login from Utilisateur where login = ? and Mdp = ?");
 			req1.setString(1,login);
-			req1.setString(1,password);
+			req1.setString(2,password);
 			
 			ResultSet res1 = req1.executeQuery();
 			
-			while(res1.next()) {
-				System.out.println(res1.getString(1));
+			if (res1.next()) {
+				return new Utilisateurs(res1.getString(1), res1.getString(2));
 			}
+			else {
+				return null;
+			}
+			
+			
+			
 			
 		} catch (ServletException | SQLException e) {
 			e.printStackTrace();
