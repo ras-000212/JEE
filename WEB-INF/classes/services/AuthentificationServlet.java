@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import mediatheque.Mediatheque;
 import persistantdata.MediathequeData;
 
 
@@ -40,7 +41,7 @@ public class AuthentificationServlet extends HttpServlet {
 	}
 	
 	 public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
-		 MediathequeData.getUser(request.getParameter("login"),request.getParameter("pwd"));
+		 Mediatheque.getUser(request.getParameter("login"),request.getParameter("pwd"));
 	 }
 	
 }

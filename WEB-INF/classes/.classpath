@@ -2,7 +2,8 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path=""/>
-	<classpathentry kind="lib" path="Z:/apache-tomcat-9.0.14/apache-tomcat-9.0.14/webapps/Projet Web/WEB-INF/classes/media.jar"/>
-	<classpathentry kind="lib" path="H:/COMMUN/DUTAPP/Applis Web Java/tp2 servlets/javax.jar"/>
+	<classpathentry kind="lib" path="Z:/apache-tomcat-9.0.14/apache-tomcat-9.0.14/webapps/JEE/javax.jar"/>
+	<classpathentry kind="lib" path="Z:/apache-tomcat-9.0.14/apache-tomcat-9.0.14/webapps/JEE/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="Z:/apache-tomcat-9.0.14/apache-tomcat-9.0.14/webapps/JEE/media.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>
