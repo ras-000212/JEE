@@ -26,7 +26,6 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 	public void init(ServletConfig config) throws ServletException{
 		try {
 			super.init(config);
-			Class.forName("oracle.jdbc.OracleDriver");
 			connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","ETUDIANT","ETUDIANT");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

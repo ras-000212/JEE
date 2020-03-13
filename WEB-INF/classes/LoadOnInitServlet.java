@@ -4,7 +4,6 @@ import javax.servlet.http.*;
 
 @WebServlet (urlPatterns="/initializeResources", loadOnStartup=1)
 public class LoadOnInitServlet extends HttpServlet {
-	
 
     /**
 	 * 
@@ -14,7 +13,13 @@ public class LoadOnInitServlet extends HttpServlet {
 	@Override
 	public void init(ServletConfig arg0) throws ServletException {
 		super.init(arg0);
-		System.out.println("******************************************************************");
+		try {
+			Class.forName("oracle.jdbc.OracleDriver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("******************************************************************");	
 	}
 
 }
