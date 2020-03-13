@@ -21,7 +21,7 @@ import mediatek2020.items.Utilisateur;
 public class MediathequeData extends HttpServlet implements PersistentMediatheque  {
 // Jean-François Brette 01/01/2018
 	
- private Connection connect;
+	private Connection connect;
 	
 	public void init(ServletConfig config) throws ServletException{
 		try {

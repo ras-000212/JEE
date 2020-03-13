@@ -5,7 +5,7 @@ import mediatek2020.items.EmpruntException;
 
 public class Mediatheque {
 	
-	private PersistentMediatheque data; 
+	private static PersistentMediatheque data; 
 	
 	public void setData(PersistentMediatheque data) {
 		if (this.data == null) this.data = data;  
@@ -17,7 +17,7 @@ public class Mediatheque {
 	} 
 	 
 	// exemple de méthode qui délègue à data
-	public Utilisateur getUser (String login, String password) {   
+	public static Utilisateur getUser (String login, String password) {   
 		return data.getUser(login, password);  
 	}  
 }

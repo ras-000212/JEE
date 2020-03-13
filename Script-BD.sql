@@ -7,3 +7,5 @@ Mdp VARCHAR(30)
 /
 INSERT INTO Utilisateur (Login, Mdp) VALUES ('Alexis', '123456');
 INSERT INTO Utilisateur (Login, Mdp) VALUES ('Antoine', '123456');
+
+commit;

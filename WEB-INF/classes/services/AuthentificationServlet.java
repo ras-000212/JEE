@@ -33,14 +33,14 @@ public class AuthentificationServlet extends HttpServlet {
 				"  <input type=\"text\" name=\"login\"><br>\r\n" +
 				"  <label>Password:</label><br>\r\n" + 
 				"  <input type=\"text\" name=\"pwd\"><br>\r\n" +
-				" <input type=\"submit\" value=\"Connexion\" " +
+				" <input type=\"submit\" method=\"POST\" value=\"Connexion\" " +
 				"</form>");
 
 		out.println("</body>");
 		out.println("</html>");
 	}
 	
-	 public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException{
+	 public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		 Mediatheque.getUser(request.getParameter("login"),request.getParameter("pwd"));
 	 }
 	
