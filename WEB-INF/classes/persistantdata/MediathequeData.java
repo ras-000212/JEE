@@ -20,9 +20,7 @@ import mediatheque.Utilisateurs;
 public class MediathequeData extends HttpServlet implements PersistentMediatheque  {
 // Jean-François Brette 01/01/2018
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private Connection connect;
 	
@@ -32,9 +30,9 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 
 	private MediathequeData() {
 		try {
-			Class.forName("oracle.jdbc.OracleDriver");
-			connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:8080:XE","IUT","1234");
-		} catch (ClassNotFoundException | SQLException e) {
+			DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
+			connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","IUT","1234");
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
@@ -52,12 +50,9 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 	public Utilisateur getUser(String login, String password) {
 		try {			
 			
-			PreparedStatement req1 = connect.prepareStatement("Select login from Utilisateur where login = Antoine and Mdp = 1234");
-			
-			
-//			PreparedStatement req1 = connect.prepareStatement("Select login from Utilisateur where login = ? and Mdp = ?");
-//			req1.setString(1,login);
-//			req1.setString(2,password);
+			PreparedStatement req1 = connect.prepareStatement("Select login from Utilisateur where login = ? and Mdp = ?");
+			req1.setString(1,login);
+			req1.setString(2,password);
 			
 			ResultSet res1 = req1.executeQuery();
 			
@@ -66,8 +61,7 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 			}
 			else {
 				return null;
-			}
-			
+			}	
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import mediatek2020.*;
 import mediatek2020.items.Utilisateur;
-import mediatheque.Mediatheque;
 
 @WebServlet (urlPatterns="/connexion")
 public class AuthentificationServlet extends HttpServlet {
@@ -44,8 +44,9 @@ public class AuthentificationServlet extends HttpServlet {
 	
 	 public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		 
-		 
-		//Utilisateur utest = Mediatheque.getUser(request.getParameter("login"),request.getParameter("pwd"));
+		String login = request.getParameter("login");
+		String pwd =  request.getParameter("pwd");
+		Utilisateur utest = mediatek2020.Mediatheque.getInstance().getUser(login, pwd);
 		 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
@@ -56,7 +57,14 @@ public class AuthentificationServlet extends HttpServlet {
 		out.println("<title> Authentification </title>");
 		out.println("</head>");
 		out.println("<body bgcolor=\"white\">");
-		//out.println("<h1>" + utest.toString() + "</h1>");
+		
+		if (utest != null) {
+			out.println("<h1>" + "Bonjour, " + utest.toString() + "</h1>");
+		}
+		else {
+			out.println("<h1>" + "Connexion échouée"+ "</h1>");
+		}
+		
 		out.println("</body>");
 		out.println("</html>");
 		 
