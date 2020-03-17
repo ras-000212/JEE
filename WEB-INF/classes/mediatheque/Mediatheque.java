@@ -6,7 +6,7 @@ import mediatek2020.items.Utilisateur;
 
 public class Mediatheque {
 	
-	private static PersistentMediatheque data; 
+	private PersistentMediatheque data; 
 	
 	public void setData(PersistentMediatheque data) {
 		if (this.data == null) this.data = data;  
@@ -18,7 +18,7 @@ public class Mediatheque {
 	} 
 	 
 	// exemple de méthode qui délègue à data
-	public static Utilisateur getUser (String login, String password) {   
+	public Utilisateur getUser (String login, String password) {   
 		return data.getUser(login, password);  
 	}  
 }

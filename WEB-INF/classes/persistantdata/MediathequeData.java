@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
 import mediatek2020.*;
@@ -22,25 +20,24 @@ import mediatheque.Utilisateurs;
 public class MediathequeData extends HttpServlet implements PersistentMediatheque  {
 // Jean-François Brette 01/01/2018
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Connection connect;
 	
-	public void init(ServletConfig config) throws ServletException{
-		try {
-			super.init(config);
-			Class.forName("oracle.jdbc.OracleDriver");
-			connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","ETUDIANT","ETUDIANT");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-	}
 	static {
 		Mediatheque.getInstance().setData(new MediathequeData());
 	}
 
 	private MediathequeData() {
+		try {
+			Class.forName("oracle.jdbc.OracleDriver");
+			connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:8080:XE","IUT","1234");
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	// renvoie la liste de tous les documents de la bibliothèque
@@ -53,11 +50,14 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 	// si pas trouvé, renvoie null
 	@Override
 	public Utilisateur getUser(String login, String password) {
-		try {
-			this.init();
-			PreparedStatement req1 = connect.prepareStatement("Select login from Utilisateur where login = ? and Mdp = ?");
-			req1.setString(1,login);
-			req1.setString(2,password);
+		try {			
+			
+			PreparedStatement req1 = connect.prepareStatement("Select login from Utilisateur where login = Antoine and Mdp = 1234");
+			
+			
+//			PreparedStatement req1 = connect.prepareStatement("Select login from Utilisateur where login = ? and Mdp = ?");
+//			req1.setString(1,login);
+//			req1.setString(2,password);
 			
 			ResultSet res1 = req1.executeQuery();
 			
@@ -69,7 +69,7 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 			}
 			
 			
-		} catch (ServletException | SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
