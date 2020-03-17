@@ -76,6 +76,22 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 	// si pas trouvé, renvoie null
 	@Override
 	public Document getDocument(int numDocument) {
+		try {
+			PreparedStatement req1 = connect.prepareStatement("Select * from Document where numDocument = ?");
+			req1.setInt(1, numDocument);
+			
+			ResultSet res1 = req1.executeQuery();
+			
+			if(res1.next()) {
+				return null;//modifier
+			}else {
+				return null;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
@@ -84,6 +100,20 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 		// args[0] -> le titre
 		// args [1] --> l'auteur
 		// etc...
+		
+		try {
+			PreparedStatement statement = connect.prepareStatement("insert into Document (titre, auteur) values (?,?)");
+			statement.setString(1, (String) args[0]);
+		    statement.setString(2, (String) args[1]);
+		    statement.executeUpdate();
+		    
+		    connect.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+       
+		
 	}
 
 }
