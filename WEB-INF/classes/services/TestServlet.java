@@ -26,7 +26,7 @@ public class TestServlet extends HttpServlet{
 
 		out.println("<html>");
 		out.println("<head>");
-
+  
 		out.println("<title> Authentification </title>");
 		out.println("</head>");
 		out.println("<body bgcolor=\"white\">");
