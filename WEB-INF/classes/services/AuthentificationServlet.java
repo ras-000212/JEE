@@ -17,8 +17,7 @@ public class AuthentificationServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
@@ -59,14 +58,10 @@ public class AuthentificationServlet extends HttpServlet {
 			session.setAttribute("Login", login);
 			session.setAttribute("Password", pwd);
 			session.setAttribute("Admin", utest.isBibliothecaire());
-			out.println("<h1>" + "Bonjour " + (String) session.getAttribute("Login")+ "</h1>");
-			if ((boolean) session.getAttribute("Admin")) {
-				out.println("<p>Session bibliothécaire</p>");
-			}
-			else {
-				out.println("<p>Session adhérent</p>");
-			}
-		} else {
+			response.sendRedirect("accueil");
+		} 
+		
+		else {
 			out.println("<h1>" + "Connexion échouée" + "</h1> <br>");
 			
 			out.println("<title> Authentification </title>");
