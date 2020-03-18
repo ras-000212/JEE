@@ -18,7 +18,7 @@ public class Utilisateurs implements Utilisateur  {
 	public Utilisateurs(String login, String password, Boolean isAdmin) {
 		this.login = login;
 		this.password = password;
-		this.isBibliothecaire = true;
+		this.isBibliothecaire = isAdmin;
 	}
 
 	@Override

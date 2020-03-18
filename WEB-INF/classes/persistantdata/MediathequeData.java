@@ -31,7 +31,7 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 	private MediathequeData() {
 		try {
 			DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
-			connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","alexis");
+			connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","IUT","1234");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -59,9 +59,18 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 			if (res1.next()) {
 				String strNom = res1.getString(1);
 				String strMdp = res1.getString(2);
-				return new Utilisateurs(strNom, strMdp);
+				Boolean isAdmin;
+				if (res1.getInt(3) == 1) {
+					isAdmin = true;
+				}
+				else {
+					isAdmin = false;
+				}
+				res1.close();
+				return new Utilisateurs(strNom, strMdp, isAdmin);
 			}
 			else {
+				res1.close();
 				return null;
 			}	
 			
