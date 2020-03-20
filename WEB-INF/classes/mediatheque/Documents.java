@@ -6,7 +6,15 @@ import mediatek2020.items.ReservationException;
 import mediatek2020.items.RetourException;
 import mediatek2020.items.Utilisateur;
 
-public class Documents implements Document {
+public abstract class Documents implements Document {
+	
+	private String auteur;
+	private String titre;
+	
+	public Documents(String auteur, String titre) {
+		this.auteur = auteur;
+		this.titre = titre;
+	}
 	
 	@Override
 	public Object[] data() {
