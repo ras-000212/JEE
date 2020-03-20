@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import mediatek2020.*;
 import mediatek2020.items.Document;
 import mediatek2020.items.Utilisateur;
+import mediatheque.CD;
+import mediatheque.DVD;
+import mediatheque.Livre;
 import mediatheque.Utilisateurs;
 
 // classe mono-instance  dont l'unique instance est connue de la bibliotheque
@@ -106,9 +109,15 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 
 	@Override
 	public void nouveauDocument(int type, Object... args) {
-		// args[0] -> le titre
-		// args [1] --> l'auteur
-		// etc...
+		switch((String)args[0]){
+			case("Livre"):
+				Livre doc= new Livre((String) args[1],(String) args[2],(String) args[3],(int) args[4]);
+			case("CD"):
+				CD doc= new CD((String) args[1],(String) args[2],(String) args[3],(int) args[4]);
+			case("DVD"):
+				DVD doc = new DVD ((String) args[1],(String) args[2],(String) args[3],(float) args[4]);
+		
+		}
 		
 		try {
 			PreparedStatement statement = connect.prepareStatement("insert into Document (titre, auteur) values (?,?)");
