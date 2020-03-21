@@ -8,12 +8,14 @@ import mediatek2020.items.Utilisateur;
 
 public abstract class Documents implements Document {
 	
+	private static int NUM_DOC = 0;
 	private String auteur;
 	private String titre;
 	
 	public Documents(String auteur, String titre) {
 		this.auteur = auteur;
 		this.titre = titre;
+		this.NUM_DOC++;
 	}
 	
 	@Override
@@ -36,5 +38,7 @@ public abstract class Documents implements Document {
 	public void reserver(Utilisateur arg0) throws ReservationException {
 		
 	}
+	
+	public abstract String getClassName ();
 
 }

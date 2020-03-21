@@ -14,6 +14,7 @@ import mediatek2020.items.Document;
 import mediatek2020.items.Utilisateur;
 import mediatheque.CD;
 import mediatheque.DVD;
+import mediatheque.Documents;
 import mediatheque.Livre;
 import mediatheque.Utilisateurs;
 
@@ -103,34 +104,54 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}	
 		return null;
 	}
 
 	@Override
 	public void nouveauDocument(int type, Object... args) {
-		switch((String)args[0]){
-			case("Livre"):
-				Livre doc= new Livre((String) args[1],(String) args[2],(String) args[3],(int) args[4]);
-			case("CD"):
-				CD doc= new CD((String) args[1],(String) args[2],(String) args[3],(int) args[4]);
-			case("DVD"):
-				DVD doc = new DVD ((String) args[1],(String) args[2],(String) args[3],(float) args[4]);
-		
-		}
-		
+		//args[0] = numDoc
+		//args[1] = titre
+		//args[2] = auteur
 		try {
-			PreparedStatement statement = connect.prepareStatement("insert into Document (titre, auteur) values (?,?)");
-			statement.setString(1, (String) args[0]);
-		    statement.setString(2, (String) args[1]);
+/*			Documents doc = null;
+			switch(type){
+				case(1):
+					doc= new Livre((String) args[1],(String) args[2]);
+				case(2):
+					doc= new CD((String) args[1],(String) args[2]);
+				case(3):
+					doc = new DVD ((String) args[1],(String) args[2]);
+			}*/
+			PreparedStatement statement = connect.prepareStatement("insert into Document (type,titre, auteur) values (?,?,?)");
+			statement.setInt(1, type);
+		    statement.setString(2, (String) args[0]);
+		    statement.setString(3, (String) args[1]);
 		    statement.executeUpdate();
-		    
 		    connect.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-       
+	}
+	
+	public int getNumberDocument() {
+		try {
+			PreparedStatement req1 = connect.prepareStatement("Select count(*) from Document");
+			ResultSet res1 = req1.executeQuery();
+			int nbDoc;
+			if (res1.next()) {
+				nbDoc = res1.getInt(0);
+				res1.close();
+				return nbDoc;
+				}	
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+		
 		
 	}
 
