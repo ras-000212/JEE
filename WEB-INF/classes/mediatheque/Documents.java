@@ -9,13 +9,14 @@ import mediatek2020.items.Utilisateur;
 public abstract class Documents implements Document {
 	
 	private static int NUM_DOC = 0;
+	private int numDoc;
 	private String auteur;
 	private String titre;
 	
 	public Documents(String auteur, String titre) {
 		this.auteur = auteur;
 		this.titre = titre;
-		this.NUM_DOC++;
+		this.numDoc=NUM_DOC++;
 	}
 	
 	@Override

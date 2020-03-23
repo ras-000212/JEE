@@ -90,13 +90,20 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 	@Override
 	public Document getDocument(int numDocument) {
 		try {
-			PreparedStatement req1 = connect.prepareStatement("Select * from Document where numDocument = ?");
+			PreparedStatement req1 = connect.prepareStatement("Select * from Document where numDoc = ?");
 			req1.setInt(1, numDocument);
-			
 			ResultSet res1 = req1.executeQuery();
-			
 			if(res1.next()) {
-				return null;//modifier
+				Documents doc;
+				
+				String strAuteur = res1.getString(4);
+				
+				switch(res1.getInt(2)) {
+					case(1):
+						doc = new Livre(res)
+						
+				}
+				return null;
 			}else {
 				return null;
 			}
@@ -110,20 +117,10 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 
 	@Override
 	public void nouveauDocument(int type, Object... args) {
-		//args[0] = numDoc
-		//args[1] = titre
+		//args[0] = titre
 		//args[2] = auteur
 		try {
-/*			Documents doc = null;
-			switch(type){
-				case(1):
-					doc= new Livre((String) args[1],(String) args[2]);
-				case(2):
-					doc= new CD((String) args[1],(String) args[2]);
-				case(3):
-					doc = new DVD ((String) args[1],(String) args[2]);
-			}*/
-			PreparedStatement statement = connect.prepareStatement("insert into Document (type,titre, auteur) values (?,?,?)");
+			PreparedStatement statement = connect.prepareStatement("insert into Document (numDoc,TypeDoc,Titre, Auteur) values (seq_document,?,?,?)");
 			statement.setInt(1, type);
 		    statement.setString(2, (String) args[0]);
 		    statement.setString(3, (String) args[1]);
@@ -145,14 +142,11 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 				res1.close();
 				return nbDoc;
 				}	
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return 0;
-		
-		
 	}
 
 }
