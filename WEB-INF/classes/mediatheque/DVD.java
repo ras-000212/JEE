@@ -1,14 +1,20 @@
 package mediatheque;
 
 public class DVD extends Documents {
-	
-	public DVD(String auteur, String titre) {
-		super(auteur, titre);	
+
+	private String genre;
+	private float duree;
+
+	public DVD(String auteur, String titre, String genre, float duree) {
+		super(auteur, titre);
+		this.genre=genre;
+		this.duree=duree;		
 	}
 
 	@Override
 	public String getClassName() {
-		return "DVD";
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

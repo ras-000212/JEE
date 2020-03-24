@@ -1,14 +1,21 @@
 package mediatheque;
 
 public class CD extends Documents {
-	
-	public CD(String auteur,String titre) {
+	private String maisonDisque;
+	private int nbrMorceau;
+
+	public CD(String auteur,String titre, String maisonDisque, int nbrMorceau) {
 		super(auteur, titre);
+		this.maisonDisque=maisonDisque;
+		this.nbrMorceau=nbrMorceau;
 	}
 
 	@Override
 	public String getClassName() {
-		return "CD";
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
+
+
+
 }
