@@ -4,3 +4,5 @@
 /TestServlet.class
 /InscriptionServlet.class
 /AccueilServlet.class
+/AjoutDocServlet.class
+/AjoutLivreServlet.class

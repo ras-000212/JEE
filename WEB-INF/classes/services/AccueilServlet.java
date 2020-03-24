@@ -34,12 +34,16 @@ public class AccueilServlet extends HttpServlet {
 		out.println("<h1>Accueil</h1>");
 		out.println("<h2>" + "Bonjour " + (String) session.getAttribute("Login")+ "</h2>");
 		if ((boolean) session.getAttribute("Admin")) {
-			out.println("<p>Session bibliothécaire</p>");
-			//faire les balises <a href...> pour faire les redirections en fonction de la fonctionnalité sélectionnée
+			out.println("<p>Session bibliothécaire</p><br><br>");
+			out.println("<a href=\"ajout_livre\"> Ajouter un livre à la liste des documents </a><br>");
+			out.println("<a href=\"ajout_CD\"> Ajouter un CD à la liste des documents </a><br>");
+			out.println("<a href=\"ajout_DVD\"> Ajouter un DVD à la liste des documents </a><br>");
+			out.println("<a href=\"liste\"> Voir la liste des documents de la médiathèque </a>");
 		}
 		else {
-			out.println("<p>Session adhérent</p>");
-			//idem avec les fonctionnalités adhérents
+			out.println("<p>Session adhérent</p><br><br>");
+			out.println("<a href=\"emprunter\"> Emprunter un document </a><br>");
+			out.println("<a href=\"rendre\"> Rednre un document emrpunté </a>");
 		}
 		
 		out.println("</body>");

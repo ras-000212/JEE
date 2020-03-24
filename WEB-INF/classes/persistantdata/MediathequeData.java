@@ -87,12 +87,14 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 	// va récupérer le document de numéro numDocument dans la BD
 	// et le renvoie
 	// si pas trouvé, renvoie null
+	
 	@Override
 	public Document getDocument(int numDocument) {
 		try {
 			PreparedStatement req1 = connect.prepareStatement("Select * from Document where numDoc = ?");
 			req1.setInt(1, numDocument);
 			ResultSet res1 = req1.executeQuery();
+			
 			if(res1.next()) {
 				Documents doc;
 				
@@ -100,7 +102,7 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 				
 				switch(res1.getInt(2)) {
 					case(1):
-						doc = new Livre(res)
+						doc = new Livre(strAuteur, res1.getString(3));
 						
 				}
 				return null;
