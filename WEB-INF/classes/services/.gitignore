@@ -6,3 +6,6 @@
 /AccueilServlet.class
 /AjoutDocServlet.class
 /AjoutLivreServlet.class
+/ErrorServlet.class
+/AjoutCDServlet.class
+/AjoutDVDServlet.class

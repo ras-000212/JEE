@@ -9,14 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet (urlPatterns="/test")
-public class TestServlet extends HttpServlet{
+@WebServlet (urlPatterns="/erreur")
+public class ErrorServlet extends HttpServlet{
 
-	
-	/**
-	 * 
-	 */
-
+	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
@@ -27,32 +23,14 @@ public class TestServlet extends HttpServlet{
 		out.println("<html>");
 		out.println("<head>");
   
-		out.println("<title> Authentification </title>");
+		out.println("<title> ERREUR </title>");
 		out.println("</head>");
 		out.println("<body bgcolor=\"white\">");
-		out.println("<h1>Test Réussi !!</h1>");
+		out.println("<h1>Erreur</h1>");
 		out.println("</body>");
 		out.println("</html>");
 		
 	}
 	
-	
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		 
-		 
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-
-		out.println("<html>");
-		out.println("<head>");
-
-		out.println("<title> Authentification </title>");
-		out.println("</head>");
-		out.println("<body bgcolor=\"white\">");
-		out.println("<h1>Test Réussi !!</h1>");
-		out.println("</body>");
-		out.println("</html>");
-		 
-	 }
 	
 }
