@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import mediatek2020.items.Utilisateur;
 
-@WebServlet(urlPatterns = "/connexion")
+@WebServlet(urlPatterns = "/")
 public class AuthentificationServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

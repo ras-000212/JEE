@@ -21,4 +21,8 @@ public class Mediatheque {
 	public Utilisateur getUser (String login, String password) {   
 		return data.getUser(login, password);  
 	}  
+	
+	public void nouveauDocument(int type, Object... args) {
+		data.nouveauDocument(type, args);
+	}
 }

@@ -36,15 +36,17 @@ public class AjoutLivreServlet extends HttpServlet{
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("alexis");
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
 		String auteur = request.getParameter("auteur");
 		String titre = request.getParameter("titre");
-		String genre = request.getParameter("genre");
-		String nbPages = request.getParameter("nbPages");
-
+/*		String genre = request.getParameter("genre");
+		String nbPages = request.getParameter("nbPages");*/
+		Object args[]= null;
+		args[0]=titre;
+		args[1]=auteur;
 		out.println("<html>");
 		out.println("<head>");
 		
@@ -52,8 +54,9 @@ public class AjoutLivreServlet extends HttpServlet{
 		out.println("</head>");
 		out.println("<body bgcolor=\"white\">");
 		
-		if (auteur != null && titre != null && genre != null && nbPages.matches("-?(0|[1-9]\\d*)")) {
-			//code ajout 
+		if (auteur != null && titre != null /*&& genre != null && nbPages.matches("-?(0|[1-9]\\d*)")*/) {
+			
+			mediatek2020.Mediatheque.getInstance().nouveauDocument(1,args);
 			out.println("<p>Ajout réussi !</p>");
 		}
 		else {

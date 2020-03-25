@@ -6,17 +6,18 @@ import mediatek2020.items.ReservationException;
 import mediatek2020.items.RetourException;
 import mediatek2020.items.Utilisateur;
 
-public abstract class Documents implements Document {
+public class Documents implements Document {
 	
-	private static int NUM_DOC = 0;
 	private int numDoc;
 	private String auteur;
 	private String titre;
+	private int type;
 	
-	public Documents(String auteur, String titre) {
+	public Documents(int numDoc,int type,String auteur, String titre) {
 		this.auteur = auteur;
 		this.titre = titre;
-		this.numDoc=NUM_DOC++;
+		this.numDoc=numDoc;
+		this.type = type;
 	}
 	
 	@Override
@@ -40,6 +41,16 @@ public abstract class Documents implements Document {
 		
 	}
 	
-	public abstract String getClassName ();
+	public String getTypeDoc () {
+		switch (this.type) {
+		case (1):
+			return "Livre";
+		case (2):
+			return "CD";
+		case(3):
+			return "DVD";
+		}
+		return "";	
+	}
 
 }
