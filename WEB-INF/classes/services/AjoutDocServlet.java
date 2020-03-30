@@ -48,10 +48,13 @@ public class AjoutDocServlet extends HttpServlet{
 			switch (request.getParameter("type")) {
 				case ("Livre"):
 					type = 1;
+					break;
 				case ("CD"):
 					type = 2;
+					break;
 				case("DVD"):
 					type = 3;
+					break;
 			}
 		}
 		
@@ -68,7 +71,6 @@ public class AjoutDocServlet extends HttpServlet{
 			mediatek2020.Mediatheque.getInstance().nouveauDocument(type,args);
 			out.println("<p>Ajout réussi !</p><br><br>");
 			out.println("<a href=\"accueil\"> Retour à l'accueil </a>");
-			type =0;
 		}
 		else {
 			out.println("<p>Échec de l'ajout. Un ou des champ(s) dans le formulaire de saisi est / sont invalide(s)</p>");
