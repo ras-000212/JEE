@@ -147,7 +147,7 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 		// args[2] = auteur
 		try {
 			PreparedStatement statement = connect.prepareStatement(
-					"insert into Document (numDoc,TypeDoc,Titre, Auteur, estLibre) values (seq_document,?,?,?,1)");
+					"insert into Document (numDoc,TypeDoc,Titre, Auteur, estLibre) values (seq_document.NextVal,?,?,?,1)");
 			statement.setInt(1, type);
 			statement.setString(2, (String) args[0]);
 			statement.setString(3, (String) args[1]);

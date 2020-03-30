@@ -2,6 +2,7 @@ package services;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,7 +37,6 @@ public class AjoutDocServlet extends HttpServlet{
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("test");
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
@@ -44,7 +44,7 @@ public class AjoutDocServlet extends HttpServlet{
 		String titre = request.getParameter("titre");
 		int type = 0;
 		
-		if(request.getParameter("type").matches("-?(0|[1-9]\\d*)")) {
+		if(request.getParameter("type")!="") {
 			switch (request.getParameter("type")) {
 				case ("Livre"):
 					type = 1;
@@ -55,20 +55,20 @@ public class AjoutDocServlet extends HttpServlet{
 			}
 		}
 		
-		Object args[]= null;
-		args[0]=titre;
-		args[1]=auteur;
+		Object args[]= {titre, auteur};
 		out.println("<html>");
 		out.println("<head>");
 		
-		out.println("<title> Ajouter un livre </title>");
+		out.println("<title> Ajouter un document </title>");
 		out.println("</head>");
 		out.println("<body bgcolor=\"white\">");
 		
 		if (auteur != null && titre != null && type!=0) {
 			
 			mediatek2020.Mediatheque.getInstance().nouveauDocument(type,args);
-			out.println("<p>Ajout réussi !</p>");
+			out.println("<p>Ajout réussi !</p><br><br>");
+			out.println("<a href=\"accueil\"> Retour à l'accueil </a>");
+			type =0;
 		}
 		else {
 			out.println("<p>Échec de l'ajout. Un ou des champ(s) dans le formulaire de saisi est / sont invalide(s)</p>");
