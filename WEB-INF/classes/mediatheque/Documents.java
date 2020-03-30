@@ -12,12 +12,14 @@ public class Documents implements Document {
 	private String auteur;
 	private String titre;
 	private int type;
+	private boolean estLibre;
 	
-	public Documents(int numDoc,int type,String auteur, String titre) {
+	public Documents(int numDoc,int type,String auteur, String titre, boolean estLibre) {
 		this.auteur = auteur;
 		this.titre = titre;
 		this.numDoc=numDoc;
 		this.type = type;
+		this.estLibre = estLibre;
 	}
 	
 	@Override
@@ -43,12 +45,12 @@ public class Documents implements Document {
 	
 	public String getTypeDoc () {
 		switch (this.type) {
-		case (1):
-			return "Livre";
-		case (2):
-			return "CD";
-		case(3):
-			return "DVD";
+			case (1):
+				return "Livre";
+			case (2):
+				return "CD";
+			case(3):
+				return "DVD";
 		}
 		return "";	
 	}

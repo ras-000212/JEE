@@ -13,10 +13,7 @@ import javax.servlet.http.HttpServlet;
 import mediatek2020.*;
 import mediatek2020.items.Document;
 import mediatek2020.items.Utilisateur;
-import mediatheque.CD;
-import mediatheque.DVD;
 import mediatheque.Documents;
-import mediatheque.Livre;
 import mediatheque.Utilisateurs;
 
 // classe mono-instance  dont l'unique instance est connue de la bibliotheque
@@ -35,7 +32,7 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 	private MediathequeData() {
 		try {
 			DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
-			connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "alexis");
+			connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "IUT", "1234");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -55,7 +52,14 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 					int typeDoc = res1.getInt("TypeDoc");
 					String strTitre = res1.getString("Titre");
 					String strAuteur = res1.getString("Auteur");
-					documents.add(new Documents(numDoc, typeDoc, strTitre, strAuteur));
+					boolean estLibre;
+					if(res1.getInt(4) == 0) {
+						estLibre = false;
+					}
+					else {
+						estLibre = true;
+					}
+					documents.add(new Documents(numDoc, typeDoc, strTitre, strAuteur, estLibre));
 				}
 				return documents;
 			} catch (SQLException e) {
@@ -116,7 +120,14 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 				int typeDoc = res1.getInt(1);
 				String strTitre = res1.getString(2);
 				String strAuteur = res1.getString(3);
-				Documents doc = new Documents(numDoc, typeDoc, strTitre, strAuteur);
+				boolean estLibre;
+				if(res1.getInt(4) == 0) {
+					estLibre = false;
+				}
+				else {
+					estLibre = true;
+				}
+				Documents doc = new Documents(numDoc, typeDoc, strTitre, strAuteur, estLibre);
 
 				return doc;
 			} else {
@@ -136,14 +147,13 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 		// args[2] = auteur
 		try {
 			PreparedStatement statement = connect.prepareStatement(
-					"insert into Document (numDoc,TypeDoc,Titre, Auteur) values (seq_document,?,?,?)");
+					"insert into Document (numDoc,TypeDoc,Titre, Auteur, estLibre) values (seq_document,?,?,?,1)");
 			statement.setInt(1, type);
 			statement.setString(2, (String) args[0]);
 			statement.setString(3, (String) args[1]);
 			statement.executeUpdate();
 			connect.commit();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

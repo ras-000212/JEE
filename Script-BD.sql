@@ -14,7 +14,8 @@ CREATE TABLE Document
 (NumDoc Number(5) CONSTRAINT PK_DOCUMENT PRIMARY KEY,
 TypeDoc NUMBER(1),
 Titre VARCHAR(30),
-Auteur VARCHAR(30)
+Auteur VARCHAR(30),
+estLibre NUMBER(1)
 )
 ;
 
@@ -30,6 +31,6 @@ INSERT INTO Utilisateur (Login, Mdp, isBibliothecaire) VALUES ('Antoine', '12345
 
 
 --INSERT INTO DOCUMENT
-INSERT INTO Document (NumDoc,TypeDoc,Titre,Auteur) VALUES (seq_document.NEXTVAL, 1,'Ulysse','Homere');
-INSERT INTO Document (NumDoc,TypeDoc,Titre,Auteur) VALUES (seq_document.NEXTVAL, 2,'Cassiopee','Homere');
+INSERT INTO Document (NumDoc,TypeDoc,Titre,Auteur,estLibre) VALUES (seq_document.NEXTVAL, 1,'Ulysse','Homere',1);
+INSERT INTO Document (NumDoc,TypeDoc,Titre,Auteur,estLibre) VALUES (seq_document.NEXTVAL, 1,'Cassiopee','Homere',1);
 commit;
