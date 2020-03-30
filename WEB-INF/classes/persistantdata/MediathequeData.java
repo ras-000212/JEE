@@ -14,12 +14,13 @@ import mediatek2020.*;
 import mediatek2020.items.Document;
 import mediatek2020.items.Utilisateur;
 import mediatheque.Documents;
+import mediatheque.PersistentMediatheque;
 import mediatheque.Utilisateurs;
 
 // classe mono-instance  dont l'unique instance est connue de la bibliotheque
 // via une auto-déclaration dans son bloc static
 
-public class MediathequeData extends HttpServlet implements PersistentMediatheque {
+public class MediathequeData extends HttpServlet implements PersistentMediatheque, mediatek2020.PersistentMediatheque {
 // Jean-François Brette 01/01/2018
 
 	private static final long serialVersionUID = 1L;
@@ -32,7 +33,7 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 	private MediathequeData() {
 		try {
 			DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
-			connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "IUT", "1234");
+			connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "alexis");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -42,18 +43,19 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 	// renvoie la liste de tous les documents de la bibliothèque
 	@Override
 	public List<Document> tousLesDocuments() {
-			try {
-				List<Document> documents = new ArrayList<Document>();
-				PreparedStatement req1 = connect.prepareStatement("Select * from Document ORDER BY 1");
+		List<Document> documents = new ArrayList<>();
+		try {
+				PreparedStatement req1 = connect.prepareStatement("Select * from Document ORDER BY 2,3");
 				ResultSet res1 = req1.executeQuery();
 				
 				while(res1.next()) {
+					System.out.println();
 					int numDoc = res1.getInt("NumDoc");
-					int typeDoc = res1.getInt("TypeDoc");
+					int typeDoc =res1.getInt("TypeDoc");
 					String strTitre = res1.getString("Titre");
 					String strAuteur = res1.getString("Auteur");
 					boolean estLibre;
-					if(res1.getInt(4) == 0) {
+					if(res1.getInt("estLibre") == 0) {
 						estLibre = false;
 					}
 					else {
@@ -66,7 +68,7 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 				// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return documents;
 	}
 
 	// va récupérer le User dans la BD et le renvoie
@@ -108,7 +110,7 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 	// si pas trouvé, renvoie null
 
 	@Override
-	public Document getDocument(int numDocument) {
+	public Documents getDocument(int numDocument) {
 		try {
 			PreparedStatement req1 = connect.prepareStatement("Select * from Document where numDoc = ?");
 			req1.setInt(1, numDocument);

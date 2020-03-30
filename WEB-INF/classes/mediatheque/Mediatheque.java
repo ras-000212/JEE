@@ -1,5 +1,7 @@
 package mediatheque;
 
+import java.util.List;
+
 import mediatek2020.items.Document;
 import mediatek2020.items.EmpruntException;
 import mediatek2020.items.Utilisateur;
@@ -24,5 +26,12 @@ public class Mediatheque {
 	
 	public void nouveauDocument(int type, Object... args) {
 		data.nouveauDocument(type, args);
+	}
+	
+	public Object[] tousLesDocuments() {
+		List<Document> documents =data.tousLesDocuments();
+		
+		return null;
+		
 	}
 }

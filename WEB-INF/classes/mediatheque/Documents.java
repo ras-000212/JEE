@@ -24,13 +24,13 @@ public class Documents implements Document {
 	
 	@Override
 	public Object[] data() {
-		
-		return null;
+		Object[] doc = {this.numDoc,this.getTypeDoc(),this.titre,this.auteur,this.getEstLibre()}; 
+		return doc;
 	}
 
 	@Override
 	public void emprunter(Utilisateur arg0) throws EmpruntException {
-		
+		//faire le sql ici
 	}
 
 	@Override
@@ -54,5 +54,13 @@ public class Documents implements Document {
 		}
 		return "";	
 	}
+	
+	public String getEstLibre() {
+		if(this.estLibre)
+			return "oui";
+		else
+			return "non";
+	}
+	
 
 }

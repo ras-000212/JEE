@@ -36,7 +36,7 @@ public class AccueilServlet extends HttpServlet {
 		if ((boolean) session.getAttribute("Admin")) {
 			out.println("<p>Session bibliothécaire</p><br><br>");
 			out.println("<a href=\"ajout_doc\"> Ajouter un document à la liste des documents </a><br><br>");
-			out.println("<a href=\"liste\"> Voir la liste des documents de la médiathèque </a>");
+			out.println("<a href=\"bibliotheque\"> Voir la liste des documents de la médiathèque </a>");
 		}
 		else {
 			out.println("<p>Session adhérent</p><br><br>");
