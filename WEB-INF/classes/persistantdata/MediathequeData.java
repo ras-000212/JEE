@@ -14,13 +14,12 @@ import mediatek2020.*;
 import mediatek2020.items.Document;
 import mediatek2020.items.Utilisateur;
 import mediatheque.Documents;
-import mediatheque.PersistentMediatheque;
 import mediatheque.Utilisateurs;
 
 // classe mono-instance  dont l'unique instance est connue de la bibliotheque
 // via une auto-déclaration dans son bloc static
 
-public class MediathequeData extends HttpServlet implements PersistentMediatheque, mediatek2020.PersistentMediatheque {
+public class MediathequeData extends HttpServlet implements PersistentMediatheque {
 // Jean-François Brette 01/01/2018
 
 	private static final long serialVersionUID = 1L;
