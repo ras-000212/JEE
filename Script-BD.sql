@@ -45,6 +45,5 @@ INSERT INTO Document (NumDoc,TypeDoc,Titre,Auteur,estLibre) VALUES (seq_document
 INSERT INTO Document (NumDoc,TypeDoc,Titre,Auteur,estLibre) VALUES (seq_document.NEXTVAL, 1,'Cassiopee','Homere',1);
 
 
---INSERT INTO EMPRUNT
-INSERT INTO Emprunt (Login,NumDoc) VALUES ('Alexis','1');
+
 commit;

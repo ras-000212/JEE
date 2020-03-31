@@ -113,22 +113,24 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 		try {
 			PreparedStatement req1 = connect.prepareStatement("Select * from Document where numDoc = ?");
 			req1.setInt(1, numDocument);
+			System.out.println(numDocument);
 			ResultSet res1 = req1.executeQuery();
 
 			if (res1.next()) {
 
-				int numDoc = res1.getInt(0);
-				int typeDoc = res1.getInt(1);
-				String strTitre = res1.getString(2);
-				String strAuteur = res1.getString(3);
+				int numDoc = res1.getInt("numDoc");
+				int typeDoc = res1.getInt("TypeDoc");
+				String strTitre = res1.getString("Titre");
+				String strAuteur = res1.getString("Auteur");
 				boolean estLibre;
-				if(res1.getInt(4) == 0) {
+				
+				if(res1.getInt("estLibre") == 0) {
 					estLibre = false;
 				}
 				else {
 					estLibre = true;
 				}
-				Documents doc = new Documents(numDoc, typeDoc, strTitre, strAuteur, estLibre);
+				Documents doc = new Documents(numDoc, typeDoc, strAuteur, strTitre, estLibre);
 
 				return doc;
 			} else {

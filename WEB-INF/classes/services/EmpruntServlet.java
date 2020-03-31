@@ -46,7 +46,7 @@ public class EmpruntServlet extends HttpServlet {
 		}
 		out.println("</select>");
 		out.println("<input type=\"submit\" value=\"Emprunter\">");
-		
+
 		out.println("</form>");
 		out.println("</body>");
 		out.println("</html>");
@@ -57,18 +57,19 @@ public class EmpruntServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		
-		int numDoc = request.getParameter("document").charAt(0);
+
+		int numDoc = Character.getNumericValue(request.getParameter("document").charAt(0));
 		String login = (String) session.getAttribute("Login");
 		String pwd = (String) session.getAttribute("Password");
 		Document doc = mediatek2020.Mediatheque.getInstance().getDocument(numDoc);
 		Utilisateur user = mediatek2020.Mediatheque.getInstance().getUser(login, pwd);
-		System.out.println("ahaha");
+		
 		try {
 			mediatek2020.Mediatheque.getInstance().emprunter(doc, user);
 		} catch (EmpruntException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		};
+		}
+
 	}
 }
