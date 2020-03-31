@@ -2,7 +2,9 @@ SET LINESIZE 200
 
 DROP TABLE Utilisateur CASCADE CONSTRAINT PURGE;
 DROP TABLE Document CASCADE CONSTRAINT PURGE;
+DROP TABLE Emprunt CASCADE CONSTRAINT PURGE;
 DROP SEQUENCE seq_document;
+
 
 CREATE TABLE Utilisateur
 (Login VARCHAR(30) CONSTRAINT PK_UTILISATEUR PRIMARY KEY,
@@ -16,6 +18,14 @@ TypeDoc NUMBER(1),
 Titre VARCHAR(30),
 Auteur VARCHAR(30),
 estLibre NUMBER(1)
+)
+;
+
+CREATE TABLE Emprunt
+(NumDoc Number(5),
+CONSTRAINT FK_NumDoc FOREIGN KEY (NumDoc) REFERENCES Document(NumDoc),
+Login VARCHAR(30),
+CONSTRAINT FK_Login FOREIGN KEY (Login) REFERENCES Utilisateur(Login)
 )
 ;
 
@@ -33,4 +43,8 @@ INSERT INTO Utilisateur (Login, Mdp, isBibliothecaire) VALUES ('Antoine', '12345
 --INSERT INTO DOCUMENT
 INSERT INTO Document (NumDoc,TypeDoc,Titre,Auteur,estLibre) VALUES (seq_document.NEXTVAL, 1,'Ulysse','Homere',1);
 INSERT INTO Document (NumDoc,TypeDoc,Titre,Auteur,estLibre) VALUES (seq_document.NEXTVAL, 1,'Cassiopee','Homere',1);
+
+
+--INSERT INTO EMPRUNT
+INSERT INTO Emprunt (Login,NumDoc) VALUES ('Alexis','1');
 commit;
