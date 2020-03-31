@@ -1,10 +1,17 @@
 package mediatheque;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import mediatek2020.Mediatheque;
 import mediatek2020.items.Document;
 import mediatek2020.items.EmpruntException;
 import mediatek2020.items.ReservationException;
 import mediatek2020.items.RetourException;
 import mediatek2020.items.Utilisateur;
+import persistantdata.MediathequeData;
 
 public class Documents implements Document {
 	
@@ -30,7 +37,19 @@ public class Documents implements Document {
 
 	@Override
 	public void emprunter(Utilisateur arg0) throws EmpruntException {
-		//faire le sql ici
+		try {
+			DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
+			Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "alexis");
+			
+			PreparedStatement req1 = connect.prepareStatement("Update Document set estLibre=0 where numDoc="+this.numDoc);
+			req1.executeUpdate();
+			
+			
+			//PreparedStatement req2 = connect.prepareStatement("INSERT INTO Emprunt (Login,NumDoc) VALUES (?,?)");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Override

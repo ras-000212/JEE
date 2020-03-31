@@ -40,7 +40,7 @@ public class AccueilServlet extends HttpServlet {
 		}
 		else {
 			out.println("<p>Session adhérent</p><br><br>");
-			out.println("<a href=\"emprunter\"> Emprunter un document </a><br><br>");
+			out.println("<a href=\"emprunt\"> Emprunter un document </a><br><br>");
 			out.println("<a href=\"rendre\"> Rendre un document emrpunté </a>");
 		}
 		out.println("<form method=\"post\">" +
