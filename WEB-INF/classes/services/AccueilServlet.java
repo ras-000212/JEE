@@ -41,15 +41,19 @@ public class AccueilServlet extends HttpServlet {
 		else {
 			out.println("<p>Session adhérent</p><br><br>");
 			out.println("<a href=\"emprunter\"> Emprunter un document </a><br><br>");
-			out.println("<a href=\"rendre\"> Rednre un document emrpunté </a>");
+			out.println("<a href=\"rendre\"> Rendre un document emrpunté </a>");
 		}
+		out.println("<form method=\"post\">" +
+		"<button type=\"submit\" value=\"LogOut\"> Se déconnecter</button>"+
+		"</form>");
 		
 		out.println("</body>");
 		out.println("</html>");
-	}
+	} 	
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		 request.getSession().invalidate();
+		 response.sendRedirect("connexion");
 	}
 
 }

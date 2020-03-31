@@ -30,7 +30,7 @@ public class AuthentificationServlet extends HttpServlet {
 		out.println("<body bgcolor=\"white\">");
 		out.println("<form method=\"post\" action=\"connexion\">\r\n" + "  <label>Nom d'utilisateur : </label><br>\r\n"
 				+ "  <input type=\"text\" name=\"login\"><br><br>\r\n" + "  <label>Mot de passe : </label><br>\r\n"
-				+ "  <input type=\"text\" name=\"pwd\"><br><br><br>\r\n"
+				+ "  <input type=\"password\" name=\"pwd\"><br><br><br>\r\n"
 				+ " <input type=\"submit\" value=\"Connexion\"> " + "</form>");
 		out.println("</body>");
 		out.println("</html>");

@@ -49,7 +49,6 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 				ResultSet res1 = req1.executeQuery();
 				
 				while(res1.next()) {
-					System.out.println();
 					int numDoc = res1.getInt("NumDoc");
 					int typeDoc =res1.getInt("TypeDoc");
 					String strTitre = res1.getString("Titre");
