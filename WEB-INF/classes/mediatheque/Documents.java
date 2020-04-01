@@ -40,7 +40,7 @@ public class Documents implements Document {
 
 		try {
 			DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
-			Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "IUT", "1234");
+			Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "alexis");
 
 			PreparedStatement req1 = connect
 					.prepareStatement("Update Document set estLibre=0 where numDoc=" + this.numDoc);
@@ -53,8 +53,7 @@ public class Documents implements Document {
 			
 			connect.commit();
 
-			// PreparedStatement req2 = connect.prepareStatement("INSERT INTO Emprunt
-			// (Login,NumDoc) VALUES (?,?)");
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -63,7 +62,25 @@ public class Documents implements Document {
 
 	@Override
 	public void rendre(Utilisateur arg0) throws RetourException {
+		try {
+			DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
+			Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "alexis");
 
+			PreparedStatement req1 = connect
+					.prepareStatement("Update Document set estLibre=1 where numDoc=" + this.numDoc);
+			req1.executeUpdate();
+
+			PreparedStatement req2 = connect.prepareStatement("DELETE Emprunt where login=? and numdoc=?");
+			req2.setInt(2, this.numDoc);
+			req2.setString(1, arg0.name());
+			req2.execute();
+			
+			connect.commit();
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
