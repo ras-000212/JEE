@@ -33,7 +33,7 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 	private MediathequeData() {
 		try {
 			DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
-			connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "alexis");
+			connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "IUT", "1234");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

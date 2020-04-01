@@ -57,6 +57,14 @@ public class EmpruntServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
+		
+		
+		out.println("<html>");
+		out.println("<head>");
+		
+		out.println("<title> Ajouter un document </title>");
+		out.println("</head>");
+		out.println("<body bgcolor=\"white\">");
 
 		int numDoc = Character.getNumericValue(request.getParameter("document").charAt(0));
 		String login = (String) session.getAttribute("Login");
@@ -66,10 +74,15 @@ public class EmpruntServlet extends HttpServlet {
 		
 		try {
 			mediatek2020.Mediatheque.getInstance().emprunter(doc, user);
+			out.println("<p>Emprunt pris en compte</p><br><br>");
+			out.println("<a href=\"accueil\"> Retour à l'accueil </a>");
 		} catch (EmpruntException e) {
-			// TODO Auto-generated catch block
+			out.println("<p>Échec de l'ajout. Un ou des champ(s) dans le formulaire de saisi est / sont invalide(s)</p>");
 			e.printStackTrace();
 		}
 
+		out.println("</body>");
+		out.println("</html>");	
+		
 	}
 }

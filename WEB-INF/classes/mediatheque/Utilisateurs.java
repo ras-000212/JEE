@@ -1,5 +1,6 @@
 package mediatheque;
 
+import mediatek2020.items.Document;
 import mediatek2020.items.Utilisateur;
 
 public class Utilisateurs implements Utilisateur  {
@@ -20,7 +21,11 @@ public class Utilisateurs implements Utilisateur  {
 		this.password = password;
 		this.isBibliothecaire = isAdmin;
 	}
-
+	
+	public void emprunte(Document doc) {
+		
+	}
+	
 	@Override
 	public Object[] data() {
 		return null;
