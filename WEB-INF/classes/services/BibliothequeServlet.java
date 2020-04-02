@@ -33,13 +33,14 @@ public class BibliothequeServlet extends HttpServlet{
 		out.println("<title> Bibliothèque </title>");
 		out.println("</head>");
 		out.println("<body bgcolor=\"white\">");
-		out.println("<table>"+
+		out.println("<table border=\"1\">"+
 					"<tr>" +
 						"<th>Numéro Document</th>" +
 						"<th>Type de Document</th>"+
 						"<th>Titre</th>"+
 						"<th>Auteur</th>"+
 						"<th>Disponible</th>"+
+						"<th>Emprunteur</th>"+
 					"</tr>"
 				);
 		for (Document d : documents) {
