@@ -20,7 +20,15 @@ public class Documents implements Document {
 	private boolean estLibre;
 	private String emprunteur;
 
-	public Documents(int numDoc, int type, String auteur, String titre, boolean estLibre) {
+	public Documents(int numDoc, int type, String auteur, String titre, boolean estLibre,String emprunteur) {
+		this.auteur = auteur;
+		this.titre = titre;
+		this.numDoc = numDoc;
+		this.type = type;
+		this.estLibre = estLibre;
+		this.emprunteur = emprunteur;
+	}
+	public Documents(int numDoc, int type, String auteur, String titre,boolean estLibre) {
 		this.auteur = auteur;
 		this.titre = titre;
 		this.numDoc = numDoc;

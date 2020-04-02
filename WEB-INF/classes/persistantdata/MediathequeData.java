@@ -54,13 +54,14 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 					String strTitre = res1.getString("Titre");
 					String strAuteur = res1.getString("Auteur");
 					boolean estLibre;
+					String emprunteur = res1.getString("Login");
 					if(res1.getInt("estLibre") == 0) {
 						estLibre = false;
 					}
 					else {
 						estLibre = true;
 					}
-					documents.add(new Documents(numDoc, typeDoc, strTitre, strAuteur, estLibre));
+					documents.add(new Documents(numDoc, typeDoc, strTitre, strAuteur, estLibre,emprunteur));
 				}
 				return documents;
 			} catch (SQLException e) {
@@ -123,6 +124,7 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 				String strTitre = res1.getString("Titre");
 				String strAuteur = res1.getString("Auteur");
 				boolean estLibre;
+				String emprunteur = res1.getString("Login");
 				
 				if(res1.getInt("estLibre") == 0) {
 					estLibre = false;
@@ -130,7 +132,7 @@ public class MediathequeData extends HttpServlet implements PersistentMediathequ
 				else {
 					estLibre = true;
 				}
-				Documents doc = new Documents(numDoc, typeDoc, strAuteur, strTitre, estLibre);
+				Documents doc = new Documents(numDoc, typeDoc, strAuteur, strTitre, estLibre,emprunteur);
 
 				return doc;
 			} else {

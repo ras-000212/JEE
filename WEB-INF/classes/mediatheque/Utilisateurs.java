@@ -28,7 +28,8 @@ public class Utilisateurs implements Utilisateur  {
 	
 	@Override
 	public Object[] data() {
-		return null;
+		Object []data = {this.login,this.password,this.isBibliothecaire};
+		return data;
 	}
 
 
