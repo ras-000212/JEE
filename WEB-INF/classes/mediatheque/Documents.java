@@ -31,7 +31,7 @@ public class Documents implements Document {
 
 	@Override
 	public Object[] data() {
-		Object[] doc = { this.numDoc, this.getTypeDoc(), this.titre, this.auteur, this.getEstLibre() };
+		Object[] doc = { this.numDoc, this.getTypeDoc(), this.titre, this.auteur, this.getEstLibre(),this.emprunteur };
 		return doc;
 	}
 
@@ -43,12 +43,11 @@ public class Documents implements Document {
 			Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "alexis");
 
 			PreparedStatement req1 = connect
-					.prepareStatement("Update Document set estLibre=0 where numDoc=" + this.numDoc);
+					.prepareStatement("Update Document set estLibre=? and login=? where numDoc=? and ");
+			req1.setInt(1, 0);
+			req1.setString(2, arg0.name());
+			req1.setInt(3, this.numDoc);
 			req1.executeUpdate();
-
-			PreparedStatement req2 = connect.prepareStatement("UPDATE Document set login = ? where nunmDoc = " + this.numDoc);
-			req2.setString(1, arg0.name());
-			req2.execute();
 			
 			this.emprunteur = arg0.name();
 			

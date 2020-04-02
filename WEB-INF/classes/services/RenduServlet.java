@@ -59,9 +59,6 @@ public class RenduServlet {
 		PrintWriter out = response.getWriter();
 		
 		
-		Utilisateurs u = new Utilisateurs("2","3");
-		u.
-		
 		out.println("<html>");
 		out.println("<head>");
 		

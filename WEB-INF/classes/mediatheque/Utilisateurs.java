@@ -11,7 +11,6 @@ public class Utilisateurs implements Utilisateur  {
 	private String login;
 	private String password;
 	private Boolean isBibliothecaire;
-	private List<Document> documents;
 	
 
 	
@@ -19,7 +18,6 @@ public class Utilisateurs implements Utilisateur  {
 		this.login = login;
 		this.password = password;
 		this.isBibliothecaire = false;
-		this.documents = new ArrayList();
 	}
 	
 	public Utilisateurs(String login, String password, Boolean isAdmin) {
