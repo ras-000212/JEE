@@ -12,18 +12,13 @@ Mdp VARCHAR(30),
 isBibliothecaire NUMBER(1)
 )
 ;
+
 CREATE TABLE Document
 (NumDoc Number(5) CONSTRAINT PK_DOCUMENT PRIMARY KEY,
 TypeDoc NUMBER(1),
 Titre VARCHAR(30),
 Auteur VARCHAR(30),
-estLibre NUMBER(1)
-)
-;
-
-CREATE TABLE Emprunt
-(NumDoc Number(5),
-CONSTRAINT FK_NumDoc FOREIGN KEY (NumDoc) REFERENCES Document(NumDoc),
+estLibre NUMBER(1),
 Login VARCHAR(30),
 CONSTRAINT FK_Login FOREIGN KEY (Login) REFERENCES Utilisateur(Login)
 )
@@ -41,8 +36,8 @@ INSERT INTO Utilisateur (Login, Mdp, isBibliothecaire) VALUES ('Antoine', '12345
 
 
 --INSERT INTO DOCUMENT
-INSERT INTO Document (NumDoc,TypeDoc,Titre,Auteur,estLibre) VALUES (seq_document.NEXTVAL, 1,'Ulysse','Homere',1);
-INSERT INTO Document (NumDoc,TypeDoc,Titre,Auteur,estLibre) VALUES (seq_document.NEXTVAL, 1,'Cassiopee','Homere',1);
+INSERT INTO Document (NumDoc,TypeDoc,Titre,Auteur,estLibre,Login) VALUES (seq_document.NEXTVAL, 1,'Ulysse','Homere',1,NULL);
+INSERT INTO Document (NumDoc,TypeDoc,Titre,Auteur,estLibre,Login) VALUES (seq_document.NEXTVAL, 1,'Cassiopee','Homere',1,NULL);
 
 
 
