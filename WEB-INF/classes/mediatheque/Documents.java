@@ -48,7 +48,7 @@ public class Documents implements Document {
 
 		try {
 			DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
-			Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "alexis");
+			Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "IUT", "1234");
 
 			PreparedStatement req1 = connect
 					.prepareStatement("Update Document set estLibre=? , login=? where numDoc=?");
@@ -72,7 +72,7 @@ public class Documents implements Document {
 	public void rendre(Utilisateur arg0) throws RetourException {
 		try {
 			DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
-			Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "alexis");
+			Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "IUT", "1234");
 
 			PreparedStatement req1 = connect
 					.prepareStatement("Update Document set estLibre=? , Login=? where numDoc=?");
