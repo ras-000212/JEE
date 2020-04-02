@@ -5,13 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import mediatek2020.Mediatheque;
 import mediatek2020.items.Document;
 import mediatek2020.items.EmpruntException;
 import mediatek2020.items.ReservationException;
 import mediatek2020.items.RetourException;
 import mediatek2020.items.Utilisateur;
-import persistantdata.MediathequeData;
 
 public class Documents implements Document {
 
@@ -20,6 +18,7 @@ public class Documents implements Document {
 	private String titre;
 	private int type;
 	private boolean estLibre;
+	private String emprunteur;
 
 	public Documents(int numDoc, int type, String auteur, String titre, boolean estLibre) {
 		this.auteur = auteur;
@@ -27,6 +26,7 @@ public class Documents implements Document {
 		this.numDoc = numDoc;
 		this.type = type;
 		this.estLibre = estLibre;
+		this.emprunteur = null;
 	}
 
 	@Override
@@ -46,15 +46,14 @@ public class Documents implements Document {
 					.prepareStatement("Update Document set estLibre=0 where numDoc=" + this.numDoc);
 			req1.executeUpdate();
 
-			PreparedStatement req2 = connect.prepareStatement("INSERT INTO Emprunt (Login,NumDoc) VALUES (?,?)");
-			req2.setInt(2, this.numDoc);
+			PreparedStatement req2 = connect.prepareStatement("UPDATE Document set login = ? where nunmDoc = " + this.numDoc);
 			req2.setString(1, arg0.name());
 			req2.execute();
 			
+			this.emprunteur = arg0.name();
+			
 			connect.commit();
 
-			// PreparedStatement req2 = connect.prepareStatement("INSERT INTO Emprunt
-			// (Login,NumDoc) VALUES (?,?)");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
