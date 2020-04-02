@@ -1,5 +1,9 @@
 package mediatheque;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 import mediatek2020.items.Document;
 import mediatek2020.items.Utilisateur;
 
@@ -7,6 +11,7 @@ public class Utilisateurs implements Utilisateur  {
 	private String login;
 	private String password;
 	private Boolean isBibliothecaire;
+	private List<Document> documents;
 	
 
 	
@@ -14,16 +19,13 @@ public class Utilisateurs implements Utilisateur  {
 		this.login = login;
 		this.password = password;
 		this.isBibliothecaire = false;
+		this.documents = new ArrayList();
 	}
 	
 	public Utilisateurs(String login, String password, Boolean isAdmin) {
 		this.login = login;
 		this.password = password;
 		this.isBibliothecaire = isAdmin;
-	}
-	
-	public void emprunte(Document doc) {
-		
 	}
 	
 	@Override
