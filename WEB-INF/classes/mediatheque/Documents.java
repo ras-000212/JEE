@@ -51,7 +51,7 @@ public class Documents implements Document {
 			Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "alexis");
 
 			PreparedStatement req1 = connect
-					.prepareStatement("Update Document set estLibre=? and login=? where numDoc=? and ");
+					.prepareStatement("Update Document set estLibre=? , login=? where numDoc=?");
 			req1.setInt(1, 0);
 			req1.setString(2, arg0.name());
 			req1.setInt(3, this.numDoc);
@@ -75,7 +75,7 @@ public class Documents implements Document {
 			Connection connect = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "alexis");
 
 			PreparedStatement req1 = connect
-					.prepareStatement("Update Document set estLibre=? and Login=? where numDoc=?");
+					.prepareStatement("Update Document set estLibre=? , Login=? where numDoc=?");
 			req1.setInt(1, 1);
 			req1.setString(2,null);
 			req1.setInt(3, this.numDoc);

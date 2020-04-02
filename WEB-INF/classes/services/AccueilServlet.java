@@ -42,6 +42,7 @@ public class AccueilServlet extends HttpServlet {
 			out.println("<p>Session adhérent</p><br><br>");
 			out.println("<a href=\"emprunt\"> Emprunter un document </a><br><br>");
 			out.println("<a href=\"rendre\"> Rendre un document emrpunté </a><br><br>");
+			//mettre ses documents
 		}
 		out.println("<form method=\"post\">" +
 		"<button type=\"submit\" value=\"LogOut\"> Se déconnecter</button>"+

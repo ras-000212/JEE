@@ -51,6 +51,7 @@ public class BibliothequeServlet extends HttpServlet{
 						"<th>"+ (String) doc[2]+"</th>"+ //titre
 						"<th>"+(String) doc[3] +"</th>"+ // auteur
 						"<th>"+(String) doc[4]+"</th>"+ // estLibre
+						"<th>"+(String) doc[5]+"</th>"+ // emprunteur
 					"</tr>"
 				);
 		}
