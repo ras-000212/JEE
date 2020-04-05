@@ -34,19 +34,20 @@ public class EmpruntServlet extends HttpServlet {
 		out.println("</head>");
 		out.println("<body bgcolor=\"white\">");
 		out.println("<form method=\"post\">" + "<select name=\"document\">");
-		for (Document d : documents) {
-			Object[] doc = d.data();
-			if (doc[4] == "oui") {
-				out.println("<option>" + (int) doc[0] + " - " + // numDOC
-						(String) doc[1] + " - " + // TypeDoc
-						(String) doc[2] + " - " + // titre
-						(String) doc[3] + // auteur
-						"</option>");
+		synchronized(documents) {
+			for (Document d : documents) {
+				Object[] doc = d.data();
+				if (doc[4] == "oui") {
+					out.println("<option>" + (int) doc[0] + " - " + // numDOC
+							(String) doc[1] + " - " + // TypeDoc
+							(String) doc[2] + " - " + // titre
+							(String) doc[3] + // auteur
+							"</option>");
+				}
 			}
+			out.println("</select>");
+			out.println("<input type=\"submit\" value=\"Emprunter\">");
 		}
-		out.println("</select>");
-		out.println("<input type=\"submit\" value=\"Emprunter\">");
-
 		out.println("</form>");
 		out.println("</body>");
 		out.println("</html>");
